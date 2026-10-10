@@ -1,0 +1,95 @@
+<p>login works!</p>
+
+<div class="login-page">
+
+  <div class="login-card">
+
+    <h2>Welcome Back</h2>
+
+    <p class="subtitle">
+      Login to your MEAN E-commerce account
+    </p>
+
+    @if (error()) {
+      <div class="error-message">
+        {{ error() }}
+      </div>
+    }
+
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+    >
+
+      <!-- Email Address -->
+      <div class="form-group">
+
+        <label for="email">
+          Email Address
+        </label>
+
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="Enter your email"
+          autocomplete="email"
+        />
+
+        @if (
+          loginForm.controls.email.touched &&
+          loginForm.controls.email.invalid
+        ) {
+          <small>
+            Please enter a valid email address.
+          </small>
+        }
+
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+
+        <label for="password">
+          Password
+        </label>
+
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+        />
+
+        @if (
+          loginForm.controls.password.touched &&
+          loginForm.controls.password.invalid
+        ) {
+          <small>
+            Password is required.
+          </small>
+        }
+
+      </div>
+
+      <!-- Login Button -->
+      <button
+        type="submit"
+        [disabled]="loading()"
+      >
+        {{ loading() ? 'Logging in...' : 'Login' }}
+      </button>
+
+    </form>
+
+    <p class="register-link">
+      Don't have an account?
+      <a routerLink="/register">
+        Create Account
+      </a>
+    </p>
+
+  </div>
+
+</div>
